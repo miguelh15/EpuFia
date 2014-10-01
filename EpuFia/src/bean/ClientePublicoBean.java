@@ -5,6 +5,7 @@ public class ClientePublicoBean {
 	int codCliPu;
 	String direccion,fechaIng,nombre,apePat,apeMat;
 	String password,fechaNac,email;
+	
 	public int getCodCliPu() {
 		return codCliPu;
 	}

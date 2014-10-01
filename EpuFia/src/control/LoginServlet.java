@@ -32,12 +32,12 @@ public class LoginServlet extends HttpServlet {
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ClientePublicoBean cliente = new ClientePublicoBean();
-		cliente.setCodCliPu(Integer.parseInt(request.getParameter("username")));
-		cliente.setPassword(request.getParameter("password"));
+    	ClientePublicoBean cliente = new ClientePublicoBean();
+		cliente.setCodCliPu(Integer.parseInt(request.getParameter("txt_cuenta")));
+		cliente.setPassword(request.getParameter("txt_password"));
 		
 		DAOFactory factory=
-				DAOFactory.getFactoryConcrete(DAOFactory.MYSQL);
+				DAOFactory.getFactoryConcrete(DAOFactory.ORACLE);
 		Entidad<ClientePublicoBean> clienteDAO=factory.getClientePublicoDAO();
 		ClientePublicoBean clientedb = clienteDAO.findById(cliente);
 		
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 			if(clientedb.getPassword().toUpperCase().equals(cliente.getPassword().toUpperCase())){
 				HttpSession session=request.getSession(true);
 				session.setAttribute("cliente", clientedb);
-				pagina="contentLayout.jsp";
+				pagina="adminstrador.jsp";
 			}else{
 				String mensaje="Clave Incorrecta";
 				request.setAttribute("mensaje", mensaje);
